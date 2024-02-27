@@ -1,0 +1,24 @@
+.horizontal-categories {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #cfb9cf;
+  }
+  
+  .category-links {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .category-link {
+    text-decoration: none;
+    color: #333;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .category-link:hover {
+    background-color: #d6a2d6;
+  }
+  
