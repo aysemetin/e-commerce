@@ -2,18 +2,17 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 
-
 function ProductCard({ item, user }) {
   const productUrl = `/products/product/${item.id}`;
   let localFavs = JSON.parse(localStorage.getItem("favs")) ?? [];
-  const [isFav, setIsFav] = useState(false); 
+  const [isFav, setIsFav] = useState(false);
+  const [isInBasket, setIsInBasket] = useState(false);
 
   useEffect(() => {
-    
     if (localFavs.find(localItem => localItem.id === item.id)) {
       setIsFav(true);
     }
-  }, []); 
+  }, []);
 
   function handleClick(product) {
     let itemIndex = localFavs.findIndex((localItem) => product.id === localItem.id);
@@ -27,6 +26,11 @@ function ProductCard({ item, user }) {
     localStorage.setItem("favs", JSON.stringify(localFavs));
   }
 
+  function handleAddToBasket() {
+    setIsInBasket(true);
+    console.log("Ürün sepete eklendi:", item);
+  }
+
   return (
     <div className="col-sm mb-3">
       <div className="card shadow">
@@ -38,9 +42,14 @@ function ProductCard({ item, user }) {
           <p className="card-text">{item.description.substring(0, 45)}...</p>
           <p className="lead">{item.price} €</p>
           {user && (
-            <button className="btn btn-invisible" onClick={() => handleClick(item)}>
-              {isFav ? <FaHeart color="red" /> : <FaRegHeart />}
-            </button>
+            <div className="d-flex justify-content-between align-items-center">
+              <button className="btn btn-invisible" onClick={() => handleClick(item)}>
+                {isFav ? <FaHeart color="red" /> : <FaRegHeart />}
+              </button>
+              <button className="btn" style={{backgroundColor : "#49a591"}} onClick={handleAddToBasket} disabled={isInBasket}>
+                {isInBasket ? "Added to Basket" : "Add to Basket"}
+              </button>
+            </div>
           )}
         </div>
       </div>
