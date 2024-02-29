@@ -21,6 +21,7 @@ function Navbar({ user, handleLogOut }) {
             {user ? (
               <>
                 <NavLink className="nav-link" to="/fav">Favorites</NavLink>
+                <NavLink className="nav-link" to="/basket">Go to Basket</NavLink>
                 <button className="nav-link" onClick={handleLogOut}>Log Out</button>
               </>
             ) : (

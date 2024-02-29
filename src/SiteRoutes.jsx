@@ -8,6 +8,7 @@ import PagesNotFound from "./pages/PagesNotFound";
 import { ProductLayout, Product, Category, Products } from "./products";
 import Fav from "./pages/Fav";
 import PrivateRoute from "./PrivateRoute";
+import GoToBasket from "./pages/GoToBasket";
 
 function SiteRoutes({ handleLogin, user  }) {
   return (
@@ -33,6 +34,14 @@ function SiteRoutes({ handleLogin, user  }) {
         element={
           <PrivateRoute user={user}>
             <Fav user={user} />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/basket"
+        element={
+          <PrivateRoute user={user}>
+            <GoToBasket user={user} />
           </PrivateRoute>
         }
       />
